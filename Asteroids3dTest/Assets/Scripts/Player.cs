@@ -1,15 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
+
+
 public class Player : MonoBehaviour
 {
-
+    public float speed;
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        float moveHorizontal = PlayerModel.GetMoveHorizontal();
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        GetComponent<Rigidbody>().velocity = movement;
+        Vector3 movement = new Vector3(moveHorizontal, 0.0f, 0.0f); 
+        GetComponent<Rigidbody>().velocity = movement * speed;
+
     }
+
+    
 }
