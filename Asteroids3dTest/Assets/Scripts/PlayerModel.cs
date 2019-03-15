@@ -1,6 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
+[System.Serializable]
+
 
 public class PlayerModel : MonoBehaviour
 {
@@ -9,5 +10,9 @@ public class PlayerModel : MonoBehaviour
     {
         return Input.GetAxis("Horizontal");
 
+
+
     }
+
+
 }
