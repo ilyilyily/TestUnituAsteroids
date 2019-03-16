@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Bolt: MonoBehaviour
 {
+    public float bolt_speed;
+
     private void Start()
     {
-        GetComponent<Rigidbody>().velocity = transform.forward * BoltModel.bolt_speed;
+        GetComponent<Rigidbody>().velocity = transform.forward * bolt_speed;
     }
 }
