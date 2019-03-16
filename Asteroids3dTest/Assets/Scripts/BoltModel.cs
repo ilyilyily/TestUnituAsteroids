@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoltModel : MonoBehaviour
+public class BoltModel
 {
     public static float bolt_speed = 10;
     
