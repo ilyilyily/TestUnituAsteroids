@@ -9,6 +9,10 @@ public class Boundary
 public class PlayerModel
 {
     public static float ship_speed = 5;
+
+    public static float nextFire;
+    public static float fireRate = 0.2f;
+
     public static float GetMoveHorizontal()
     {
         return Input.GetAxis("Horizontal");

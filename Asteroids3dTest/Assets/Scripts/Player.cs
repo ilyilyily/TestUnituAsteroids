@@ -7,9 +7,17 @@ public class Player : MonoBehaviour
 {
     public Boundary boundary;
 
+    public GameObject shot;
+    public Transform Shot_spawn; //shotSpawn.transfor,position...
+
     private void Update()
     {
-       // Instantiate(Object, Vector3, Quaternion);
+        if (Input.GetButton("Fire1") && Time.time > PlayerModel.nextFire)
+        {
+            PlayerModel.nextFire = Time.time + PlayerModel.fireRate;
+            GameObject clone =  Instantiate(shot, Shot_spawn.position, Shot_spawn.rotation) as GameObject;
+        }
+       
     }
 
     void FixedUpdate()
