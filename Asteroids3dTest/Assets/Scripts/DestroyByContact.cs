@@ -5,7 +5,21 @@ using UnityEngine;
 public class DestroyByContact : MonoBehaviour
 {
     public int ScoreValue;
-    public GameView /*имя класа (типа)*/ GameView /*собственное имя*/;
+    private GameView /*имя класа (типа)*/ GameView /*собственное имя*/;
+
+    private void Start()
+    {
+        GameObject GameControllerObject = GameObject.FindWithTag("GameController");
+        if(GameControllerObject != null)
+        {
+            GameView = GameControllerObject.GetComponent<GameView>();
+        }
+
+        if (GameView == null)
+        {
+            Debug.Log("Cannot find 'GameController' script");
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {

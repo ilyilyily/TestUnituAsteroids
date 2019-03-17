@@ -12,13 +12,19 @@ public class GameView : MonoBehaviour
     public float startWait;
     public float waveWait;
 
-    public GUIText VariableScore;
-    public int score;
+   public GUIText PlainScore;
+   private int score = 0;
 
     void Start()
     {
-        score = 0;
-        UpdateScore();
+
+        GameObject TextScore = GameObject.FindWithTag("TextScore");
+        if (TextScore != null)
+        {
+            PlainScore = TextScore.GetComponent<GUIText>();
+        }
+       score = 0;
+       UpdateScore();
         StartCoroutine(SpawnWaves());
     }
 
@@ -49,7 +55,7 @@ public class GameView : MonoBehaviour
 
     void UpdateScore()
     {
-        VariableScore.text = "" + score;
+        PlainScore.text = "Score:" + score; // изволило не заработать, указанный тип переменной "Text" не существует
     }
 
 }
