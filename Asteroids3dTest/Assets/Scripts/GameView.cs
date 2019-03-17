@@ -10,24 +10,46 @@ public class GameView : MonoBehaviour
     public int hazardCount;
     public float spawnWait;
     public float startWait;
+    public float waveWait;
+
+    public GUIText VariableScore;
+    public int score;
 
     void Start()
     {
-        StartCoroutine (SpawnWaves());
+        score = 0;
+        UpdateScore();
+        StartCoroutine(SpawnWaves());
     }
 
     IEnumerator SpawnWaves()
     {
         yield return new WaitForSeconds(startWait);
-        for (int i = 0; i < hazardCount ; i++)
+
+        while (true)
         {
-            Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
-            Quaternion spawnRotation = Quaternion.identity;
-            Instantiate(hazard, spawnPosition, spawnRotation);
-            yield return new WaitForSeconds(spawnWait);
+            for (int i = 0; i < hazardCount; i++)
+            {
+                Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
+                Quaternion spawnRotation = Quaternion.identity;
+                Instantiate(hazard, spawnPosition, spawnRotation);
+                yield return new WaitForSeconds(spawnWait);
+            }
+
+            yield return new WaitForSeconds(waveWait);
         }
-        
+
     }
 
+    public void AddScore(int newScoreValue)
+    {
+        score += newScoreValue;
+        UpdateScore();
+    }
+
+    void UpdateScore()
+    {
+        VariableScore.text = "" + score;
+    }
 
 }
