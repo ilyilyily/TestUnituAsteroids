@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameView : MonoBehaviour
 {
@@ -12,20 +13,40 @@ public class GameView : MonoBehaviour
     public float startWait;
     public float waveWait;
 
-   public GUIText PlainScore;
+   public Text PlainScore;
+    public Text restartText;
+    public Text gameOverText;
    private int score = 0;
+
+    private bool gameOver;
+    private bool restart;
 
     void Start()
     {
+        gameOver = false;
+        restart = false;
+        restartText.text = "";
+        gameOverText.text = "";
 
         GameObject TextScore = GameObject.FindWithTag("TextScore");
         if (TextScore != null)
         {
-            PlainScore = TextScore.GetComponent<GUIText>();
+            PlainScore = TextScore.GetComponent<Text>();
         }
        score = 0;
        UpdateScore();
         StartCoroutine(SpawnWaves());
+    }
+
+    private void Update()
+    {
+        if (restart)
+        {
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                Application.LoadLevel(Application.loadedLevel);
+            }
+        }
     }
 
     IEnumerator SpawnWaves()
@@ -43,6 +64,13 @@ public class GameView : MonoBehaviour
             }
 
             yield return new WaitForSeconds(waveWait);
+            if (gameOver)
+            {
+                restartText.text = "Press R for restart this level";
+                restart = true;
+                break;
+            }
+
         }
 
     }
@@ -56,6 +84,12 @@ public class GameView : MonoBehaviour
     void UpdateScore()
     {
         PlainScore.text = "Score:" + score; // изволило не заработать, указанный тип переменной "Text" не существует
+    }
+
+    public void GameOver()
+    {
+        gameOverText.text = "Game Over";
+        gameOver = true;
     }
 
 }

@@ -10,7 +10,7 @@ public class DestroyByContact : MonoBehaviour
     private void Start()
     {
         GameObject GameControllerObject = GameObject.FindWithTag("GameController");
-        if(GameControllerObject != null)
+        if (GameControllerObject != null)
         {
             GameView = GameControllerObject.GetComponent<GameView>();
         }
@@ -27,6 +27,12 @@ public class DestroyByContact : MonoBehaviour
         {
             return; //если соприкосается с Границой - ничего не происхоодит
         }
+
+        if (other.tag == "Player")
+        {
+            GameView.GameOver();
+        }
+
 
         GameView.AddScore(ScoreValue);
         Destroy(other.gameObject); // уничтожает объект который прикоснулся
