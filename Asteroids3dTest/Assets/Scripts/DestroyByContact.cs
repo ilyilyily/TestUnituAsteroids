@@ -30,8 +30,18 @@ public class DestroyByContact : MonoBehaviour
 
         if (other.tag == "Player")
         {
-            GameView.GameOver();
-        }
+            if (Player.hitPoints > 1)
+            {
+                Destroy(gameObject);
+                Player.hitPoints = Player.hitPoints - 1;
+                return;
+            }
+            else
+            {
+                GameView.GameOver();
+            }
+             
+            }
 
 
         GameView.AddScore(ScoreValue);

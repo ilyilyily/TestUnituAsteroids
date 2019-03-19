@@ -5,10 +5,13 @@
 
 public class Player : MonoBehaviour
 {
-    public Boundary boundary;
+    public Boundary boundary; // граница игровой области
 
     public GameObject shot;
     public Transform Shot_spawn; //shotSpawn.transfor,position...
+
+    public static int hitPoints = 3;//жизни
+
 
     private void Update()
     {
@@ -30,7 +33,7 @@ public class Player : MonoBehaviour
         GetComponent<Rigidbody>().position = PositionRiqidgobyShip();
     }
 
-    private Vector3 PositionRiqidgobyShip()  // TODO:move to model or not?
+    private Vector3 PositionRiqidgobyShip()  
     {
         return new Vector3
                 (

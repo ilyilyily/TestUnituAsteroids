@@ -89,6 +89,7 @@ public class GameView : MonoBehaviour
     public void GameOver()
     {
         gameOverText.text = "Game Over";
+        Player.hitPoints = 3;
         gameOver = true;
     }
 
