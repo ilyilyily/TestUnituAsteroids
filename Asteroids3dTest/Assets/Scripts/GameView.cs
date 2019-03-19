@@ -16,6 +16,7 @@ public class GameView : MonoBehaviour
    public Text PlainScore;
     public Text restartText;
     public Text gameOverText;
+    public Text hitPointsText;
    private int score = 0;
 
     private bool gameOver;
@@ -27,12 +28,8 @@ public class GameView : MonoBehaviour
         restart = false;
         restartText.text = "";
         gameOverText.text = "";
+        hitPointsText.text = "Жизни:" +Player.hitPoints;
 
-        GameObject TextScore = GameObject.FindWithTag("TextScore");
-        if (TextScore != null)
-        {
-            PlainScore = TextScore.GetComponent<Text>();
-        }
        score = 0;
        UpdateScore();
         StartCoroutine(SpawnWaves());
@@ -83,7 +80,12 @@ public class GameView : MonoBehaviour
 
     void UpdateScore()
     {
-        PlainScore.text = "Score:" + score; // изволило не заработать, указанный тип переменной "Text" не существует
+        PlainScore.text = "Score:" + score;
+    }
+
+    public void UpdateHitpoints()
+    {
+        hitPointsText.text = "Жизни:" + Player.hitPoints;
     }
 
     public void GameOver()

@@ -34,6 +34,7 @@ public class DestroyByContact : MonoBehaviour
             {
                 Destroy(gameObject);
                 Player.hitPoints = Player.hitPoints - 1;
+                GameView.UpdateHitpoints();
                 return;
             }
             else
